@@ -4,7 +4,12 @@ Code from [this video](https://youtu.be/PA8d4u5T4BM?si=83GTMI449kCsgb4B) — sha
 
 Turns a Strava data export into an interactive heatmap. No API needed - just the zip file Strava lets you download.
 
-The output is a single HTML file with six layers you can switch between:
+Running `heatmap.py` writes to a local `outputs/` directory:
+
+- `outputs/heatmap.html` — a single interactive HTML file with six switchable layers
+- `outputs/layers/*.png` — each layer as a standalone image
+
+The six layers:
 
 | Layer | Colour | Shows |
 |---|---|---|
@@ -24,8 +29,8 @@ pip install -r requirements.txt
 ## Usage
 
 1. Request your data from Strava: **Settings → My Account → Download or Delete Your Account → Download Request**
-2. Unzip the export and place the folder next to `heatmap.ipynb`
-3. Update the config cell:
+2. Unzip the export and place the folder next to `heatmap.py`
+3. Edit the config block at the top of `heatmap.py`:
 
 ```python
 ACTIVITIES_DIR = "your_export_folder"   # name of the unzipped folder
@@ -34,7 +39,13 @@ DATE_FROM      = "2024-01-01"           # or None for no lower limit
 DATE_TO        = "2024-12-31"           # or None for today
 ```
 
-4. Run all cells. Map is saved to `outputs/heatmap.html`.
+4. Run it:
+
+```
+python heatmap.py
+```
+
+The interactive map is saved to `outputs/heatmap.html` and each layer to `outputs/layers/`.
 
 ### Home detection
 
